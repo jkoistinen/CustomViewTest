@@ -8,7 +8,6 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Toast;
 
 /**
  * Created by jk on 2017-01-26.
@@ -20,6 +19,8 @@ public class CustomView extends View {
 
     private int halfHeightMeasureSpec;
     private int halfWidthMeasureSpec;
+
+    private int color = Color.BLUE;
 
     public CustomView(Context context) {
         super(context);
@@ -35,11 +36,23 @@ public class CustomView extends View {
 
         paint = new Paint();
         paint.setStyle(Paint.Style.FILL);
-        paint.setColor(Color.BLUE);
+        paint.setColor(color);
     }
 
     public RectF createOval(int width, int height){
         return new RectF(0, 0, width, height);
+    }
+
+    public void swapColor(){
+
+        if(color == Color.BLUE){
+            color = Color.RED;
+        } else {
+            color = Color.BLUE;
+        }
+
+        paint.setColor(color);
+        invalidate();
     }
 
     @Override
@@ -67,7 +80,7 @@ public class CustomView extends View {
 
     @Override
     public boolean performClick() {
-        Toast.makeText(getContext(), "Clicked!", Toast.LENGTH_SHORT).show();
+        swapColor();
         return super.performClick();
     }
 
