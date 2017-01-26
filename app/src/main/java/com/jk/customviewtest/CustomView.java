@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.support.v4.view.MarginLayoutParamsCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -43,7 +44,10 @@ public class CustomView extends View {
     }
 
     public RectF createOval(int width, int height){
-        return new RectF(0, 0, width, height);
+
+        int padding = 10;
+
+        return new RectF(0, 0, width - padding, height - padding);
     }
 
     public void swapColor(){
@@ -69,6 +73,12 @@ public class CustomView extends View {
         int size = Math.min(w, h);
 
         canvas.drawOval(createOval(size, size), paint);
+
+    }
+
+    @Override
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+        super.onLayout(changed, left, top, right, bottom);
     }
 
     @Override
@@ -77,7 +87,7 @@ public class CustomView extends View {
         halfHeightMeasureSpec = heightMeasureSpec / 2;
         halfWidthMeasureSpec = widthMeasureSpec / 2;
 
-        setMeasuredDimension(halfWidthMeasureSpec, halfWidthMeasureSpec);
+        setMeasuredDimension(halfWidthMeasureSpec, halfHeightMeasureSpec);
 
     }
 
