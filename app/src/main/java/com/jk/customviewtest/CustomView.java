@@ -45,7 +45,14 @@ public class CustomView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawOval(createOval(getWidth(), getHeight()), paint);
+
+        int w = getWidth();
+        int h = getHeight();
+
+        //Choose the smaller
+        int size = Math.min(w, h);
+
+        canvas.drawOval(createOval(size, size), paint);
     }
 
     @Override
@@ -54,7 +61,7 @@ public class CustomView extends View {
         halfHeightMeasureSpec = heightMeasureSpec / 2;
         halfWidthMeasureSpec = widthMeasureSpec / 2;
 
-        setMeasuredDimension(widthMeasureSpec, halfHeightMeasureSpec);
+        setMeasuredDimension(widthMeasureSpec, heightMeasureSpec);
 
     }
 
