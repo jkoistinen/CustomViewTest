@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -21,6 +22,8 @@ public class CustomView extends View {
     private int halfWidthMeasureSpec;
 
     private int color = Color.BLUE;
+
+    private static String TAG = "MainActivity";
 
     public CustomView(Context context) {
         super(context);
@@ -74,7 +77,7 @@ public class CustomView extends View {
         halfHeightMeasureSpec = heightMeasureSpec / 2;
         halfWidthMeasureSpec = widthMeasureSpec / 2;
 
-        setMeasuredDimension(widthMeasureSpec, heightMeasureSpec);
+        setMeasuredDimension(halfWidthMeasureSpec, halfWidthMeasureSpec);
 
     }
 
